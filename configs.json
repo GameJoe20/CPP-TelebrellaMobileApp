@@ -1,0 +1,16 @@
+{
+  "devices": [
+    {
+      "uuid": "2e86bd16-3862-4d20-852f-90dd38270a9d",
+      "endpoint": "******",
+      "cmd_topic": "/TelebrellaZeroW/device",
+      "fdbk_topic": ""
+    },
+    {
+      "uuid": "74807c7a-4f35-4544-8e6b-4f9fb3b64b58",
+      "endpoint": "******",
+      "cmd_topic": "",
+      "fdbk_topic": ""
+    }
+  ]
+}

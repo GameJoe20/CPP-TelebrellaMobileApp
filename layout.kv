@@ -1,0 +1,137 @@
+<DrawerItem>:
+    active_indicator_color: "#e7e4c0"
+    on_release:
+        root.screen_manager.current = root.text
+        root.nav_drawer.set_state('close')
+
+    MDNavigationDrawerItemLeadingIcon:
+        icon: root.icon
+        theme_icon_color: "Custom"
+        icon_color: "#4a4939"
+
+    MDNavigationDrawerItemText:
+        text: root.text
+        theme_text_color: "Custom"
+        text_color: "#4a4939"
+
+<Options>:
+    name: "Options"
+
+    AppBarDisplay:
+        nav_drawer: root.nav_drawer
+
+    MDButton:
+        pos_hint: {"center_x": .5, "center_y": .5}
+
+        MDButtonText:
+            text: "Options Here"
+            halign: 'center'
+
+
+<Controls>:
+    name: "Controls"
+    device_focus: "abc123"
+
+    AppBarDisplay:
+        nav_drawer: root.nav_drawer
+
+    MDButton:
+        pos_hint: {"center_x": .5, "center_y": .6}
+        size: "56dp", "56dp"
+        on_release: app.open_umbrella()
+        theme_font_size: "Custom"
+        font_size: "36sp"
+
+        MDButtonIcon:
+            icon: "arrow-up-bold"
+
+        MDButtonText:
+            text: "Open Umbrella"
+
+    MDButton:
+        pos_hint: {"center_x": .5, "center_y": .5}
+        size: "56dp", "56dp"
+        on_release: app.close_umbrella()
+
+        MDButtonIcon:
+            icon: "arrow-up-bold"
+
+        MDButtonText:
+            text: "Close Umbrella"
+            font_size: "20dp"
+
+    MDButton:
+        pos_hint: {"center_x": .5, "center_y": .4}
+        size: "56dp", "56dp"
+
+        MDButtonIcon:
+            icon: "arrow-up-bold"
+
+        MDButtonText:
+            text: "Toggle Windsensor"
+            font_size: "20dp"
+
+<AppBarDisplay>:
+    type: "small"
+    theme_bg_color: "Custom"
+    md_bg_color: "teal"
+
+    MDTopAppBarLeadingButtonContainer:
+        MDActionTopAppBarButton:
+            icon: "menu"
+            theme_icon_color: "Custom"
+            icon_color: "white"
+            on_release: root.nav_drawer.set_state('open')
+
+    MDTopAppBarTitle:
+        id: device_id
+        text: "Telebrella Controls: Device #1"
+        bold: True
+        text_color: "white"
+        pos_hint: {"center_x": 0.5}
+
+    MDTopAppBarTrailingButtonContainer:
+        MDButton:
+            pos_hint: {"center_y": 0.5}
+            on_release: root.cycle_device()
+            MDButtonText:
+                text: "Change Device"
+
+<SettingChange>:
+    title: "Setting Changed: Success"
+    size_hint: (0.8, 0.25)
+    Label:
+        id: popup_text
+        text: "Settings were changed"
+
+<AppScreen>:
+    md_bg_color: self.theme_cls.backgroundColor
+
+    MDNavigationLayout:
+        MDScreenManager:
+            id: screen_manager
+
+            Controls:
+                nav_drawer: nav_drawer
+
+            Options:
+                nav_drawer: nav_drawer
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            radius: 0, dp(16), dp(16), 0
+
+            MDNavigationDrawerMenu:
+                DrawerItem:
+                    icon: 'umbrella-outline'
+                    text: "Controls"
+                    screen_manager: screen_manager
+                    nav_drawer: nav_drawer
+
+                DrawerItem:
+                    icon: 'cog'
+                    text: "Options"
+                    screen_manager: screen_manager
+                    nav_drawer: nav_drawer
+
+AppScreen:
